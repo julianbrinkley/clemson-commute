@@ -1,0 +1,38 @@
+﻿<Page xmlns:Maps="using:Windows.UI.Xaml.Controls.Maps" 
+    x:Class="ClemsonCommuteMVVM.CreateRoute"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ClemsonCommuteMVVM"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:map="using:Windows.UI.Xaml.Controls.Maps"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <!-- Declare the shared flyout as a resource. -->
+    <Page.Resources>
+    </Page.Resources>
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        
+        <StackPanel x:Name="stkpnlMain" Grid.Column="1">
+            <map:MapControl x:Name="map1" Loaded="map1_Loaded" Width="350" Height="350" />
+            <TextBlock x:Name="textblockProfile" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Profile" VerticalAlignment="Top" FontSize="24" Margin="0,20,0,0"/>
+            <HyperlinkButton x:Name="linkButtonProfile"  FontFamily="Global User Interface" FontSize="20" Foreground="White" Content="Select Profile"/>
+           <TextBlock x:Name="textDestination" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Destination" VerticalAlignment="Top" FontSize="24" Margin="0,20,0,0"/>
+            <HyperlinkButton x:Name="linkButtonDestination" FontFamily="Global User Interface" FontSize="20" Foreground="White" Content="Select Destination"/>
+            <TextBlock x:Name="textArrivalTime" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Desired Arrival Time" VerticalAlignment="Top" FontSize="24" Margin="0,20,0,0"/>
+            <HyperlinkButton x:Name="linkButtonArrivalTime"  FontFamily="Global User Interface" FontSize="20" Foreground="White" Content="None Selected"/>
+            <TextBlock x:Name="textParking" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Desired Parking" VerticalAlignment="Top" FontSize="24" Margin="0,20,0,0"/>
+            <HyperlinkButton x:Name="linkButtonParking"   FontFamily="Global User Interface" FontSize="20" Foreground="White" Content="None Selected"/>
+            <Button x:Name="btnCreateAccount" Content="Continue" FontFamily="Global User Interface" Margin="0,20,0,0"/>
+        </StackPanel>
+    </Grid>
+</Page>

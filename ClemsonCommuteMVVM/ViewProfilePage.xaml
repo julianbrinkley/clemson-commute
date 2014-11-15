@@ -1,0 +1,207 @@
+﻿<Page
+    x:Class="ClemsonCommuteMVVM.ViewProfilePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ClemsonCommuteMVVM"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <!--Years Flyout-->
+        <Flyout x:Name="vehYearFlyout" x:Key="VehicleYearsFlyout" Placement="Full">
+
+            <ListView x:Name="yearsList">
+                <ListView.HeaderTemplate>
+                    <DataTemplate>
+                        <ListViewHeaderItem >
+                            <TextBlock FontSize="24" Margin="0 0 0 20">Select Year</TextBlock>
+                        </ListViewHeaderItem>
+                    </DataTemplate>
+                </ListView.HeaderTemplate>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+
+                             <!--When a year is selected open the "Makes" flyout-->
+                            <RadioButton GroupName="vehicleYear" 
+                                         Grid.Column="0" 
+                                         Margin="10 0 0 0" 
+                                         Content="{Binding Year}"
+                                         FontSize="20" Checked="RadioButton_Checked">
+                                
+                            </RadioButton>
+
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.FooterTemplate>
+                    <DataTemplate>
+                        <Button Click="btn_Cancel">Cancel</Button>
+                    </DataTemplate>
+                </ListView.FooterTemplate>
+
+            </ListView>
+            
+            
+            <Flyout.FlyoutPresenterStyle>
+                <Style TargetType="FlyoutPresenter">
+                    <Setter Property="ScrollViewer.ZoomMode" Value="Enabled"/>
+                </Style>
+            </Flyout.FlyoutPresenterStyle>
+        </Flyout>
+
+        <!--Make Flyout-->
+        <Flyout x:Name="vehMakeFlyout" x:Key="VehicleMakesFlyout" Placement="Full">
+
+            <ListView x:Name="makesList">
+                <ListView.HeaderTemplate>
+                    <DataTemplate>
+                        <ListViewHeaderItem >
+                            <TextBlock FontSize="24" Margin="0 0 0 20">Select Year</TextBlock>
+                        </ListViewHeaderItem>
+                    </DataTemplate>
+                </ListView.HeaderTemplate>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+
+                            <!--When a year is selected open the "Makes" flyout-->
+                            <RadioButton GroupName="vehicleMakes" 
+                                         Grid.Column="0" 
+                                         Margin="10 0 0 0" 
+                                         Content="{Binding VehicleMake}"
+                                         FontSize="20" Checked="RadioButton_Checked_1" >
+
+                            </RadioButton>
+
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.FooterTemplate>
+                    <DataTemplate>
+                        <Button Click="Button_Click">Cancel</Button>
+                    </DataTemplate>
+                </ListView.FooterTemplate>
+            </ListView>
+
+
+            <Flyout.FlyoutPresenterStyle>
+                <Style TargetType="FlyoutPresenter">
+                    <Setter Property="ScrollViewer.ZoomMode" Value="Enabled"/>
+                </Style>
+            </Flyout.FlyoutPresenterStyle>
+        </Flyout>
+
+
+        <!--Years Flyout-->
+        <Flyout x:Name="vehModelFlyout" x:Key="VehicleModelsFlyout" Placement="Full">
+
+            <ListView x:Name="modelsList">
+                <ListView.HeaderTemplate>
+                    <DataTemplate>
+                        <ListViewHeaderItem >
+                            <TextBlock FontSize="24" Margin="0 0 0 20">Select Year</TextBlock>
+                        </ListViewHeaderItem>
+                    </DataTemplate>
+                </ListView.HeaderTemplate>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+
+                            <!--When a year is selected open the "Makes" flyout-->
+                            <RadioButton GroupName="vehicleModels" 
+                                         Grid.Column="0" 
+                                         Margin="10 0 0 0" 
+                                         Content="{Binding VehicleModel}"
+                                         FontSize="20" Checked="RadioButton_Checked_2" >
+
+                            </RadioButton>
+
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.FooterTemplate>
+                    <DataTemplate>
+                        <Button Click="Button_Click_1" >Cancel</Button>
+                    </DataTemplate>
+                </ListView.FooterTemplate>
+
+            </ListView>
+
+
+            <Flyout.FlyoutPresenterStyle>
+                <Style TargetType="FlyoutPresenter">
+                    <Setter Property="ScrollViewer.ZoomMode" Value="Enabled"/>
+                </Style>
+            </Flyout.FlyoutPresenterStyle>
+        </Flyout>
+
+        <!--Years Flyout-->
+        <Flyout x:Name="parkPassFlyout" x:Key="parkingPassFlyout" Placement="Full">
+            <StackPanel>
+                <TextBlock FontSize="24" Margin="0 0 0 20">Select Parking Pass Type</TextBlock>
+                <RadioButton x:Name="rbParkStudent" GroupName="rbgParkingPasses" 
+                                         Grid.Column="0" 
+                                         Margin="10 0 0 0" 
+                                         Content="Student"
+                                         FontSize="20" Checked="rbgParkPass_Checked"  />
+                <RadioButton x:Name="rbParkFaculty" GroupName="rbgParkingPasses" 
+                                         Grid.Column="0" 
+                                         Margin="10 0 0 0" 
+                                         Content="Faculty"
+                                         FontSize="20" Checked="rbgParkPass_Checked"  />
+                <RadioButton x:Name="rbParkStaff" GroupName="rbgParkingPasses" 
+                                         Grid.Column="0" 
+                                         Margin="10 0 0 0" 
+                                         Content="Staff"
+                                         FontSize="20" Checked="rbgParkPass_Checked"  />
+                <RadioButton x:Name="rbParkVendor" GroupName="rbgParkingPasses" 
+                                         Grid.Column="0" 
+                                         Margin="10 0 0 0" 
+                                         Content="Vendor"
+                                         FontSize="20" Checked="rbgParkPass_Checked"  />
+                
+                <Button Click="Button_Click_2">Cancel</Button>
+
+            </StackPanel>
+
+
+
+            <Flyout.FlyoutPresenterStyle>
+                <Style TargetType="FlyoutPresenter">
+                    <Setter Property="ScrollViewer.ZoomMode" Value="Enabled"/>
+                </Style>
+            </Flyout.FlyoutPresenterStyle>
+        </Flyout>
+
+    </Page.Resources>
+
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel x:Name="stkpnlMain" Grid.Column="1">
+            <TextBlock x:Name="textFirstName" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Profile Name" VerticalAlignment="Top" FontSize="32" Margin="0,50,0,0"/>
+            <TextBox x:Name="textboxProfileName" HorizontalAlignment="Left" Margin="0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Global User Interface" Width="350"/>
+            <TextBlock Visibility="Collapsed"  x:Name="textblockProfileError" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Please enter a profile name" VerticalAlignment="Top" FontSize="16" Foreground="Red" Margin="0,5,0,0"  />
+            <TextBlock x:Name="textYear" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Year" VerticalAlignment="Top" FontSize="32" Margin="0,20,0,0"/>
+            <HyperlinkButton x:Name="linkButtonYear" FlyoutBase.AttachedFlyout="{StaticResource VehicleYearsFlyout}" Tapped="linkbuttonVehicle_Tapped" FontFamily="Global User Interface" FontSize="20" Foreground="White" Content="Select Year"/>
+            <TextBlock x:Name="textMake" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Make" VerticalAlignment="Top" FontSize="32" Margin="0,20,0,0"/>
+            <HyperlinkButton IsEnabled="False" x:Name="linkButtonMake" FlyoutBase.AttachedFlyout="{StaticResource VehicleMakesFlyout}"  FontFamily="Global User Interface" FontSize="20" Foreground="White" Content="Select Make" Tapped="linkButtonMake_Tapped"/>
+            <TextBlock x:Name="textModel" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Model" VerticalAlignment="Top" FontSize="32" Margin="0,20,0,0"/>
+            <HyperlinkButton IsEnabled="False" x:Name="linkButtonModel" FlyoutBase.AttachedFlyout="{StaticResource VehicleModelsFlyout}"  FontFamily="Global User Interface" FontSize="20" Foreground="White" Content="Select Model" Tapped="linkButtonModel_Tapped"/>
+            <TextBlock x:Name="textParkingPass" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Parking Pass Type" VerticalAlignment="Top" FontSize="32" Margin="0,20,0,0"/>
+            <HyperlinkButton x:Name="linkButtonParking" FlyoutBase.AttachedFlyout="{StaticResource parkingPassFlyout}" Tapped="linkbuttonVehicle_Tapped" FontFamily="Global User Interface" FontSize="20" Foreground="White" Content="None Selected"/>
+            <Button x:Name="btnCreateAccount" Content="Continue" FontFamily="Global User Interface" Margin="0,20,0,0" Click="btnCreateAccount_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>
