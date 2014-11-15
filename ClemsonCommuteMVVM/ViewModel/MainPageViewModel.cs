@@ -1,4 +1,5 @@
 ﻿using ClemsonCommuteMVVM.Helpers;
+using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ClemsonCommuteMVVM.ViewModel
 {
-    public class MainPageViewModel : INotifyPropertyChanged
+    public class MainPageViewModel : ViewModelBase
     {
         INavigationService _navigationService;
 
@@ -69,19 +70,6 @@ namespace ClemsonCommuteMVVM.ViewModel
             _navigationService.NavigateTo(typeof(RegistrationPage));
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void RaisePropertyChanged (string propertyName)
-        {
-
-            var handler = PropertyChanged;
-            if(handler != null)
-            {
-
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
-
-        }
 
 
         private Model.Model _selectedModel;
@@ -92,10 +80,8 @@ namespace ClemsonCommuteMVVM.ViewModel
             get { return _selectedModel; }
             set
             {
-                if (_selectedModel == value) { return; }
+                Set(() => SelectedModel, ref _selectedModel, value);
 
-                _selectedModel = value;
-                RaisePropertyChanged("SelectedModel");
 
             }
         }

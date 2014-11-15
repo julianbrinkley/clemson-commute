@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using GalaSoft.MvvmLight;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ClemsonCommuteMVVM.Model
 {
-   public  class Model
+   public class Model : ObservableObject
     {
         [JsonProperty("ModelYear")]
         public string Year { get; set; }
