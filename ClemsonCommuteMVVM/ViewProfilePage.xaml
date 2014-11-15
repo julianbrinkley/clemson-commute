@@ -38,7 +38,7 @@
                 </ListView.ItemTemplate>
                 <ListView.FooterTemplate>
                     <DataTemplate>
-                        <Button Click="btn_Cancel">Cancel</Button>
+                        <Button Click="btn_Cancel">Canceled</Button>
                     </DataTemplate>
                 </ListView.FooterTemplate>
 
