@@ -88,6 +88,12 @@
     <Compile Include="CreateUserProfilePage.xaml.cs">
       <DependentUpon>CreateUserProfilePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\DialogService.cs" />
+    <Compile Include="Helpers\IDialogService.cs" />
+    <Compile Include="Helpers\INavigationService.cs" />
+    <Compile Include="Helpers\NavigationService.cs" />
+    <Compile Include="Helpers\RelayCommand.cs" />
+    <Compile Include="Helpers\RelayCommandGeneric.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -107,6 +113,7 @@
     <Compile Include="RegistrationPage.xaml.cs">
       <DependentUpon>RegistrationPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\MainPageViewModel.cs" />
     <Compile Include="ViewProfilePage.xaml.cs">
       <DependentUpon>ViewProfilePage.xaml</DependentUpon>
     </Compile>

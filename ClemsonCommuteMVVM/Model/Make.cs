@@ -1,13 +1,14 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ClemsonCommuteMVVM.Model
 {
-    public class Make
+    public class Make 
     {
         [JsonProperty("ModelYear")]
         public string Year { get; set; }
