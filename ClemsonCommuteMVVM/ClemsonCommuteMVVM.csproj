@@ -85,9 +85,6 @@
     <Compile Include="CreateRoute.xaml.cs">
       <DependentUpon>CreateRoute.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CreateUserProfilePage.xaml.cs">
-      <DependentUpon>CreateUserProfilePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Helpers\DialogService.cs" />
     <Compile Include="Helpers\IDialogService.cs" />
     <Compile Include="Helpers\INavigationService.cs" />
@@ -144,10 +141,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="CreateRoute.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="CreateUserProfilePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
