@@ -1,10 +1,14 @@
-﻿using System;
+﻿using ClemsonCommuteMVVM.Model;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -22,8 +26,17 @@ namespace ClemsonCommuteMVVM
     /// </summary>
     public sealed partial class RegistrationPage : Page
     {
+
+        string firstName;
+        string lastName;
+        string emailAddress;
+        string userPassword;
+
+        UserRepository ur = new UserRepository();
+
         public RegistrationPage()
         {
+
             this.InitializeComponent();
         }
 
@@ -35,5 +48,72 @@ namespace ClemsonCommuteMVVM
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
         }
+
+        private void btnCreateAccount_Click(object sender, RoutedEventArgs e)
+        {
+            if(!string.IsNullOrWhiteSpace(textboxFirstName.Text))
+            {
+                firstName = textboxFirstName.Text;
+            }
+            else
+            {
+                textFirstNameError.Visibility = Visibility.Visible;
+            }
+
+            if(!string.IsNullOrWhiteSpace(textboxLastName.Text))
+            {
+
+                 lastName = textboxLastName.Text;
+            }
+            else
+            {
+                textboxLastName.Text = textboxLastName.Text;
+
+            }
+
+            if(!string.IsNullOrWhiteSpace(textboxEmailAddress.Text))
+            {
+
+                 emailAddress = textboxEmailAddress.Text;
+            }
+            else
+            {
+                textEmailAddressError.Visibility = Visibility.Visible;
+            }
+
+
+            if(!string.IsNullOrWhiteSpace(textboxPassword.Text))
+            {
+
+                userPassword = textPassword.Text;
+            }
+            else
+            {
+
+                textPasswordError.Visibility = Visibility.Visible;
+            }
+            
+            //create user from textbox value
+
+            User u = new User
+            {
+
+                Email = emailAddress,
+                FirstName = firstName,
+                LastName = lastName,
+                Password = userPassword,
+                UserId = 1
+
+            };
+
+
+            ur.Add(u);
+
+            Frame.Navigate(typeof(CreateUserProfilePage));
+
+            
+
+        }
+
     }
 }

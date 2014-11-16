@@ -11,6 +11,5 @@ namespace ClemsonCommuteMVVM.Helpers
 
        void GoBack();
        void NavigateTo(Object o);
-       void NavigateTo(Uri uri, object state);
     }
 }

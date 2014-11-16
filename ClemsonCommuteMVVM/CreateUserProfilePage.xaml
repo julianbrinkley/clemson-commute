@@ -17,6 +17,8 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel x:Name="stkpnlMain" Grid.Column="1">
+                <TextBlock x:Name="textblockTitle" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Create Profile" VerticalAlignment="Top" FontSize="53.333" Margin="0"/>
+                <TextBlock x:Name="textblockUserName" HorizontalAlignment="Left" TextWrapping="Wrap" Text="UserName" VerticalAlignment="Top" FontSize="24" Margin="0,10,0,0"/>
                 <TextBlock x:Name="textFirstName" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Profile Name" VerticalAlignment="Top" FontSize="24" Margin="0,50,0,0"/>
                 <TextBox x:Name="textboxFirstName" HorizontalAlignment="Left" Margin="0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Global User Interface" Width="350"/>
                 <TextBlock x:Name="textFirstNameError" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Please enter a profile name" VerticalAlignment="Top" FontSize="16" Foreground="Red" Margin="0,5,0,0"  />
@@ -33,7 +35,7 @@
                 <ComboBox x:Name="comboboxParkingPass" FontFamily="Global User Interface">
                 	<ComboBoxItem Content="None Selected"  HorizontalAlignment="Left" Width="345" IsSelected="True"/>
                 </ComboBox>
-                <Button x:Name="btnCreateAccount" Content="Continue" FontFamily="Global User Interface" Margin="0,20,0,0"/>
+                <Button x:Name="btnCreateAccount" Content="Continue" FontFamily="Global User Interface" Margin="0,20,0,0" Click="btnCreateAccount_Click"/>
             </StackPanel>
         </Grid>
 </Page>

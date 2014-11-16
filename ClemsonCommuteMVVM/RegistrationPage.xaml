@@ -17,18 +17,19 @@
         </Grid.ColumnDefinitions>
         
     	<StackPanel x:Name="stkpnlMain" Grid.Column="1">
+    		<TextBlock x:Name="textblockTitle" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Registration" VerticalAlignment="Top" FontSize="53.333" Margin="0"/>
     		<TextBlock x:Name="textFirstName" HorizontalAlignment="Left" TextWrapping="Wrap" Text="First Name" VerticalAlignment="Top" FontSize="24" Margin="0,50,0,0"/>
     		<TextBox x:Name="textboxFirstName" HorizontalAlignment="Left" Margin="0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Global User Interface" Width="350"/>
-    		<TextBlock x:Name="textFirstNameError" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Please enter your first name" VerticalAlignment="Top" FontSize="16" Foreground="Red" Margin="0,5,0,0"  />
+    		<TextBlock x:Name="textFirstNameError" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Please enter your first name" VerticalAlignment="Top" FontSize="16" Foreground="Red" Margin="0,5,0,0" Visibility="Collapsed"  />
     		<TextBlock x:Name="textLastName" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Last Name" VerticalAlignment="Top" FontSize="24" Margin="0,20,0,0"/>
     		<TextBox x:Name="textboxLastName" HorizontalAlignment="Left" Margin="0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Global User Interface" Width="350"/>
-    		<TextBlock x:Name="textLastNameError" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Please enter your last name" VerticalAlignment="Top" FontSize="16" Foreground="Red" Margin="0,3,0,0"  />
+    		<TextBlock x:Name="textLastNameError" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Please enter your last name" VerticalAlignment="Top" FontSize="16" Foreground="Red" Margin="0,3,0,0" Visibility="Collapsed"  />
     		<TextBlock x:Name="textEmailAddress" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Email Address" VerticalAlignment="Top" FontSize="24" Margin="0,20,0,0"/>
     		<TextBox x:Name="textboxEmailAddress" HorizontalAlignment="Left" Margin="0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Global User Interface" Width="350"/>
-    		<TextBlock x:Name="textLastNameError_Copy" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Please enter a valid email address" VerticalAlignment="Top" FontSize="16" Foreground="Red" Margin="0,5,0,0"  />
+    		<TextBlock x:Name="textEmailAddressError" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Please enter a valid email address" VerticalAlignment="Top" FontSize="16" Foreground="Red" Margin="0,5,0,0" Visibility="Collapsed"  />
     		<TextBlock x:Name="textPassword" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" FontSize="24" Margin="0,20,0,0"/>
     		<TextBox x:Name="textboxPassword" HorizontalAlignment="Left" Margin="0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Global User Interface" Width="350"/>
-    		<TextBlock x:Name="textLastNameError_Copy1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Please enter a password" VerticalAlignment="Top" FontSize="16" Foreground="Red" Margin="0,5,0,0"  />
+    		<TextBlock x:Name="textPasswordError" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Please enter a password" VerticalAlignment="Top" FontSize="16" Foreground="Red" Margin="0,5,0,0" Visibility="Collapsed"  />
     		<Button x:Name="btnCreateAccount" Content="Create Account" FontFamily="Global User Interface" Margin="0,20,0,0"/>
     	</StackPanel>
 
