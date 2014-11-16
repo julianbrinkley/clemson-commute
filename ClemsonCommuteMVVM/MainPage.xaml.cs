@@ -36,7 +36,7 @@ namespace ClemsonCommuteMVVM
 
         //}
 
-        public  void goToRegistration()
+        public async void goToRegistration()
         {
             //wait 2 seconds
             //await Task.Delay(TimeSpan.FromSeconds(2));
@@ -46,9 +46,9 @@ namespace ClemsonCommuteMVVM
             //await msgbox.ShowAsync();  
 
             ////wait 6 seconds
-            //await Task.Delay(TimeSpan.FromSeconds(2));
+            await Task.Delay(TimeSpan.FromSeconds(2));
 
-            //Navigate to registration
+
             Frame.Navigate(typeof(RegistrationPage));
         }
     }

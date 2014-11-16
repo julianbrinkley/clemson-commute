@@ -24,21 +24,37 @@ namespace ClemsonCommuteMVVM
     public sealed partial class CreateUserProfilePage : Page
     {
 
-
+        //UserRepository ur = new UserRepository();
 
 
         public CreateUserProfilePage(IUserRepository data)
         {
             this.InitializeComponent();
 
+            //getUser();
+
         }
 
+        //public async void getUser()
+        //{
+        //    if (!DesignMode.DesignModeEnabled)
+        //    {
+        //        var users = await ur.Load();
+
+        //        User user = (from u in users
+        //                     where u.UserId == 1
+        //                     select u).FirstOrDefault();
+
+        //        textblockUserName.Text = user.FirstName + " " + user.LastName;
+        //    }
+
+        //}
 
 
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-        }
+        //protected override void OnNavigatedTo(NavigationEventArgs e)
+        //{
+        //}
 
         private void btnCreateAccount_Click(object sender, RoutedEventArgs e)
         {

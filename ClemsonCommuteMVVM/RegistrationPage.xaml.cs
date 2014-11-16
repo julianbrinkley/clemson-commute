@@ -27,10 +27,10 @@ namespace ClemsonCommuteMVVM
     public sealed partial class RegistrationPage : Page
     {
 
-        string firstName;
-        string lastName;
-        string emailAddress;
-        string userPassword;
+        string firstName = "Julian";
+        string lastName = "Brinkley";
+        string emailAddress = "julianlbrinkley@gmail.com";
+        string userPassword = "P@ssw0rd";
 
         UserRepository ur = new UserRepository();
 
@@ -51,63 +51,63 @@ namespace ClemsonCommuteMVVM
 
         private void btnCreateAccount_Click(object sender, RoutedEventArgs e)
         {
-            if(!string.IsNullOrWhiteSpace(textboxFirstName.Text))
-            {
-                firstName = textboxFirstName.Text;
-            }
-            else
-            {
-                textFirstNameError.Visibility = Visibility.Visible;
-            }
+            //if(!string.IsNullOrWhiteSpace(textboxFirstName.Text))
+            //{
+            //    firstName = textboxFirstName.Text;
+            //}
+            //else
+            //{
+            //    textFirstNameError.Visibility = Visibility.Visible;
+            //}
 
-            if(!string.IsNullOrWhiteSpace(textboxLastName.Text))
-            {
+            //if(!string.IsNullOrWhiteSpace(textboxLastName.Text))
+            //{
 
-                 lastName = textboxLastName.Text;
-            }
-            else
-            {
-                textboxLastName.Text = textboxLastName.Text;
+            //     lastName = textboxLastName.Text;
+            //}
+            //else
+            //{
+            //    textboxLastName.Text = textboxLastName.Text;
 
-            }
+            //}
 
-            if(!string.IsNullOrWhiteSpace(textboxEmailAddress.Text))
-            {
+            //if(!string.IsNullOrWhiteSpace(textboxEmailAddress.Text))
+            //{
 
-                 emailAddress = textboxEmailAddress.Text;
-            }
-            else
-            {
-                textEmailAddressError.Visibility = Visibility.Visible;
-            }
+            //     emailAddress = textboxEmailAddress.Text;
+            //}
+            //else
+            //{
+            //    textEmailAddressError.Visibility = Visibility.Visible;
+            //}
 
 
-            if(!string.IsNullOrWhiteSpace(textboxPassword.Text))
-            {
+            //if(!string.IsNullOrWhiteSpace(textboxPassword.Text))
+            //{
 
-                userPassword = textPassword.Text;
-            }
-            else
-            {
+            //    userPassword = textPassword.Text;
+            //}
+            //else
+            //{
 
-                textPasswordError.Visibility = Visibility.Visible;
-            }
+            //    textPasswordError.Visibility = Visibility.Visible;
+            //}
             
             //create user from textbox value
 
-            User u = new User
-            {
+            //User u = new User
+            //{
 
-                Email = emailAddress,
-                FirstName = firstName,
-                LastName = lastName,
-                Password = userPassword,
-                UserId = 1
+            //    Email = emailAddress,
+            //    FirstName = firstName,
+            //    LastName = lastName,
+            //    Password = userPassword,
+            //    UserId = 1
 
-            };
+            //};
 
 
-            ur.Add(u);
+            //ur.Add(u);
 
             Frame.Navigate(typeof(CreateUserProfilePage));
 

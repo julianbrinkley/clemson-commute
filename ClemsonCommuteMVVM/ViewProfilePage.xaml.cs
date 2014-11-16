@@ -1,8 +1,10 @@
-﻿using System;
+﻿using ClemsonCommuteMVVM.Model;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Popups;
@@ -30,10 +32,15 @@ namespace ClemsonCommuteMVVM
 
          Model.Model vehicleModel = new Model.Model();
 
+
+
         public ViewProfilePage()
         {
             this.InitializeComponent();
+
+
         }
+
 
         /// <summary>
         /// Invoked when this page is about to be displayed in a Frame.
@@ -42,6 +49,9 @@ namespace ClemsonCommuteMVVM
         /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+
+
+
         }
 
         private void btnCreateAccount_Click(object sender, RoutedEventArgs e)
