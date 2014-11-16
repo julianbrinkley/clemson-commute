@@ -32,6 +32,7 @@ namespace ClemsonCommuteMVVM
 
          Model.Model vehicleModel = new Model.Model();
 
+         //UserRepository ur = new UserRepository();
 
 
         public ViewProfilePage()
@@ -41,7 +42,21 @@ namespace ClemsonCommuteMVVM
 
         }
 
+        //public async void getUser()
+        //{
+        //    if (!DesignMode.DesignModeEnabled)
+        //    {
+        //        var users = await ur.Load();
 
+        //        User user = (from u in users
+        //                     where u.UserId == 1
+        //                     select u).FirstOrDefault();
+
+        //        textFirstName.Text = user.FirstName + " " + user.LastName;
+        //    }
+        //}
+
+        //}
         /// <summary>
         /// Invoked when this page is about to be displayed in a Frame.
         /// </summary>
