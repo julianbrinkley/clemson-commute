@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Runtime.Serialization.Json;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -27,12 +28,10 @@ namespace ClemsonCommuteMVVM
     public sealed partial class RegistrationPage : Page
     {
 
-        string firstName = "Julian";
-        string lastName = "Brinkley";
-        string emailAddress = "julianlbrinkley@gmail.com";
-        string userPassword = "P@ssw0rd";
-
-        UserRepository ur = new UserRepository();
+        string firstName;
+        string lastName;
+        string emailAddress;
+        string userPassword;
 
         public RegistrationPage()
         {
@@ -49,71 +48,95 @@ namespace ClemsonCommuteMVVM
         {
         }
 
-        private void btnCreateAccount_Click(object sender, RoutedEventArgs e)
+        private async void btnCreateAccount_Click(object sender, RoutedEventArgs e)
         {
-            //if(!string.IsNullOrWhiteSpace(textboxFirstName.Text))
-            //{
-            //    firstName = textboxFirstName.Text;
-            //}
-            //else
-            //{
-            //    textFirstNameError.Visibility = Visibility.Visible;
-            //}
+            if (!string.IsNullOrWhiteSpace(textboxFirstName.Text))
+            {
+                firstName = textboxFirstName.Text;
+            }
+            else
+            {
+                textFirstNameError.Visibility = Visibility.Visible;
+                return;
+            }
 
-            //if(!string.IsNullOrWhiteSpace(textboxLastName.Text))
-            //{
+            if (!string.IsNullOrWhiteSpace(textboxLastName.Text))
+            {
 
-            //     lastName = textboxLastName.Text;
-            //}
-            //else
-            //{
-            //    textboxLastName.Text = textboxLastName.Text;
+                lastName = textboxLastName.Text;
+            }
+            else
+            {
+                textboxLastName.Text = textboxLastName.Text;
+                return;
 
-            //}
+            }
 
-            //if(!string.IsNullOrWhiteSpace(textboxEmailAddress.Text))
-            //{
+            if (!string.IsNullOrWhiteSpace(textboxEmailAddress.Text))
+            {
 
-            //     emailAddress = textboxEmailAddress.Text;
-            //}
-            //else
-            //{
-            //    textEmailAddressError.Visibility = Visibility.Visible;
-            //}
+                emailAddress = textboxEmailAddress.Text;
+            }
+            else
+            {
+                textEmailAddressError.Visibility = Visibility.Visible;
+                return;
+            }
 
 
-            //if(!string.IsNullOrWhiteSpace(textboxPassword.Text))
-            //{
+            if (!string.IsNullOrWhiteSpace(textboxPassword.Text))
+            {
 
-            //    userPassword = textPassword.Text;
-            //}
-            //else
-            //{
+                userPassword = textPassword.Text;
 
-            //    textPasswordError.Visibility = Visibility.Visible;
-            //}
+            }
+            else
+            {
+
+                textPasswordError.Visibility = Visibility.Visible;
+                return;
+            }
             
-            //create user from textbox value
 
-            //User u = new User
-            //{
+            User u = new User
+            {
 
-            //    Email = emailAddress,
-            //    FirstName = firstName,
-            //    LastName = lastName,
-            //    Password = userPassword,
-            //    UserId = 1
+                Email = emailAddress,
+                FirstName = firstName,
+                LastName = lastName,
+                Password = userPassword,
+                UserId = 1
 
-            //};
+            };
 
 
-            //ur.Add(u);
+            //Serialize
+            await saveUser(u);
 
-            Frame.Navigate(typeof(CreateUserProfilePage));
+            Frame.Navigate(typeof(ViewProfilePage));
 
             
 
         }
 
+        //Json FileName
+        private const string JSONFILENAME = "user_data.json";
+
+        //Save User
+        private async Task saveUser(User u)
+        {
+
+            var myUsers = new List<User>();
+
+            myUsers.Add(u);
+
+            var serializer = new DataContractJsonSerializer(typeof(List<User>));
+            using (var stream = await ApplicationData.Current.LocalFolder.OpenStreamForWriteAsync(
+                JSONFILENAME, CreationCollisionOption.ReplaceExisting))
+            {
+                serializer.WriteObject(stream, myUsers);
+            }
+
+        }
     }
 }

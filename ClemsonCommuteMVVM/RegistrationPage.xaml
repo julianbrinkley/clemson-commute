@@ -30,7 +30,7 @@
     		<TextBlock x:Name="textPassword" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" FontSize="24" Margin="0,20,0,0"/>
     		<TextBox x:Name="textboxPassword" HorizontalAlignment="Left" Margin="0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Global User Interface" Width="350"/>
     		<TextBlock x:Name="textPasswordError" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Please enter a password" VerticalAlignment="Top" FontSize="16" Foreground="Red" Margin="0,5,0,0" Visibility="Collapsed"  />
-    		<Button x:Name="btnCreateAccount" Content="Create Account" FontFamily="Global User Interface" Margin="0,20,0,0"/>
+            <Button x:Name="btnCreateAccount" Content="Create Account" FontFamily="Global User Interface" Margin="0,20,0,0" Click="btnCreateAccount_Click"/>
     	</StackPanel>
 
     </Grid>

@@ -4,9 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Runtime.Serialization.Json;
+using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -32,6 +35,9 @@ namespace ClemsonCommuteMVVM
 
          Model.Model vehicleModel = new Model.Model();
 
+         //Json FileName
+         private const string JSONFILENAME = "user_data.json";
+
          //UserRepository ur = new UserRepository();
 
 
@@ -42,19 +48,6 @@ namespace ClemsonCommuteMVVM
 
         }
 
-        //public async void getUser()
-        //{
-        //    if (!DesignMode.DesignModeEnabled)
-        //    {
-        //        var users = await ur.Load();
-
-        //        User user = (from u in users
-        //                     where u.UserId == 1
-        //                     select u).FirstOrDefault();
-
-        //        textFirstName.Text = user.FirstName + " " + user.LastName;
-        //    }
-        //}
 
         //}
         /// <summary>
@@ -62,11 +55,34 @@ namespace ClemsonCommuteMVVM
         /// </summary>
         /// <param name="e">Event data that describes how this page was reached.
         /// This parameter is typically used to configure the page.</param>
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
 
+            await deserializeJsonAsync();
+
+        }
+
+        //deserialize Json
+        private async Task deserializeJsonAsync()
+        {
+
+            string content = String.Empty;
+
+            List<User> myUsers;
+
+            var jsonSerializer = new DataContractJsonSerializer(typeof(List<User>));
+
+            var myStream = await ApplicationData.Current.LocalFolder.OpenStreamForReadAsync(JSONFILENAME);
+
+            myUsers = (List<User>)jsonSerializer.ReadObject(myStream);
 
 
+            User user = (from u in myUsers
+                         where u.UserId == 1
+                         select u).FirstOrDefault();
+
+
+            textblockUser.Text = string.Format("User: {0} {1}", user.FirstName, user.LastName);
         }
 
         private void btnCreateAccount_Click(object sender, RoutedEventArgs e)

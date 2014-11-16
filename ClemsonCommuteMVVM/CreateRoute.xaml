@@ -11,6 +11,139 @@
 
     <!-- Declare the shared flyout as a resource. -->
     <Page.Resources>
+        <!--Destination Flyout-->
+        <Flyout x:Name="destFlyout" x:Key="destinationFlyout" Placement="Full">
+
+            <ListView x:Name="destinationsList">
+                <ListView.HeaderTemplate>
+                    <DataTemplate>
+                        <ListViewHeaderItem >
+                            <TextBlock FontSize="24" Margin="0 0 0 20">Select Destination</TextBlock>
+                        </ListViewHeaderItem>
+                    </DataTemplate>
+                </ListView.HeaderTemplate>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+
+                            <RadioButton GroupName="destinationGroup" 
+                                         Grid.Column="0" 
+                                         Margin="10 0 0 0" 
+                                         Content="{Binding LocationName}"
+                                         FontSize="20" Checked="RadioButton_Checked" >
+
+                            </RadioButton>
+
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.FooterTemplate>
+                    <DataTemplate>
+                        <Button>Cancel</Button>
+                    </DataTemplate>
+                </ListView.FooterTemplate>
+
+            </ListView>
+
+
+            <Flyout.FlyoutPresenterStyle>
+                <Style TargetType="FlyoutPresenter">
+                    <Setter Property="ScrollViewer.ZoomMode" Value="Enabled"/>
+                </Style>
+            </Flyout.FlyoutPresenterStyle>
+        </Flyout>
+
+        <!--Arrival Flyout-->
+        <Flyout x:Name="arriFlyout" x:Key="arrivalsFlyout" Placement="Full">
+
+            <ListView x:Name="arrivalTimeList">
+                <ListView.HeaderTemplate>
+                    <DataTemplate>
+                        <ListViewHeaderItem >
+                            <TextBlock FontSize="24" Margin="0 0 0 20">Select Arrival Time</TextBlock>
+                        </ListViewHeaderItem>
+                    </DataTemplate>
+                </ListView.HeaderTemplate>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+
+                            <RadioButton x:Name="rbArrival"
+                                         GroupName="arrivalGroup" 
+                                         Grid.Column="0" 
+                                         Margin="10 0 0 0" 
+                                         Content="{Binding DisplayName}"
+                                         FontSize="20" Checked="rbArrival_Checked" >
+
+                            </RadioButton>
+
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.FooterTemplate>
+                    <DataTemplate>
+                        <Button>Cancel</Button>
+                    </DataTemplate>
+                </ListView.FooterTemplate>
+
+            </ListView>
+
+
+            <Flyout.FlyoutPresenterStyle>
+                <Style TargetType="FlyoutPresenter">
+                    <Setter Property="ScrollViewer.ZoomMode" Value="Enabled"/>
+                </Style>
+            </Flyout.FlyoutPresenterStyle>
+        </Flyout>
+
+
+        <!--Parking Flyout-->
+        <Flyout x:Name="parkFlyout" x:Key="parkingFlyout" Placement="Full">
+
+            <ListView x:Name="parkingList">
+                <ListView.HeaderTemplate>
+                    <DataTemplate>
+                        <ListViewHeaderItem >
+                            <TextBlock FontSize="24" Margin="0 0 0 20">Select Desired Parking</TextBlock>
+                        </ListViewHeaderItem>
+                    </DataTemplate>
+                </ListView.HeaderTemplate>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+
+                             <!--This needs to b changed to 3 checkboxes-->
+                            <RadioButton x:Name="rbParking"
+                                         GroupName="parkingGroup" 
+                                         Grid.Column="0" 
+                                         Margin="10 0 0 0" 
+                                         Content="{Binding DisplayName}"
+                                         FontSize="20" Checked="rbParking_Checked" >
+
+                            </RadioButton>
+
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.FooterTemplate>
+                    <DataTemplate>
+                        <Button>Cancel</Button>
+                    </DataTemplate>
+                </ListView.FooterTemplate>
+
+            </ListView>
+
+
+            <Flyout.FlyoutPresenterStyle>
+                <Style TargetType="FlyoutPresenter">
+                    <Setter Property="ScrollViewer.ZoomMode" Value="Enabled"/>
+                </Style>
+            </Flyout.FlyoutPresenterStyle>
+        </Flyout>
+
     </Page.Resources>
 
     <Grid>
@@ -23,15 +156,16 @@
 
         
         <StackPanel x:Name="stkpnlMain" Grid.Column="1">
+            <TextBlock x:Name="textblockTitle" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Create Route" VerticalAlignment="Top" FontSize="53.333" Margin="0"/>
             <map:MapControl x:Name="map1" Loaded="map1_Loaded" Width="350" Height="350" />
             <TextBlock x:Name="textblockProfile" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Profile" VerticalAlignment="Top" FontSize="24" Margin="0,20,0,0"/>
             <HyperlinkButton x:Name="linkButtonProfile"  FontFamily="Global User Interface" FontSize="20" Foreground="White" Content="Select Profile"/>
            <TextBlock x:Name="textDestination" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Destination" VerticalAlignment="Top" FontSize="24" Margin="0,20,0,0"/>
-            <HyperlinkButton x:Name="linkButtonDestination" FontFamily="Global User Interface" FontSize="20" Foreground="White" Content="Select Destination"/>
+            <HyperlinkButton x:Name="linkButtonDestination" FontFamily="Global User Interface" FontSize="20" Foreground="White" Content="Select Destination" FlyoutBase.AttachedFlyout="{StaticResource destinationFlyout}" Tapped="linkButtonDestination_Tapped"/>
             <TextBlock x:Name="textArrivalTime" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Desired Arrival Time" VerticalAlignment="Top" FontSize="24" Margin="0,20,0,0"/>
-            <HyperlinkButton x:Name="linkButtonArrivalTime"  FontFamily="Global User Interface" FontSize="20" Foreground="White" Content="None Selected"/>
+            <HyperlinkButton x:Name="linkButtonArrivalTime"  FontFamily="Global User Interface" FontSize="20" Foreground="White" Content="None Selected" FlyoutBase.AttachedFlyout="{StaticResource arrivalsFlyout}" Click="linkButtonArrivalTime_Click"/>
             <TextBlock x:Name="textParking" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Desired Parking" VerticalAlignment="Top" FontSize="24" Margin="0,20,0,0"/>
-            <HyperlinkButton x:Name="linkButtonParking"   FontFamily="Global User Interface" FontSize="20" Foreground="White" Content="None Selected"/>
+            <HyperlinkButton x:Name="linkButtonParking"   FontFamily="Global User Interface" FontSize="20" Foreground="White" Content="None Selected" FlyoutBase.AttachedFlyout="{StaticResource parkingFlyout}" Tapped="linkButtonParking_Tapped"/>
             <Button x:Name="btnCreateAccount" Content="Continue" FontFamily="Global User Interface" Margin="0,20,0,0"/>
         </StackPanel>
     </Grid>

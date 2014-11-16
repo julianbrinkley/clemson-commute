@@ -59,7 +59,7 @@
                 <ListView.HeaderTemplate>
                     <DataTemplate>
                         <ListViewHeaderItem >
-                            <TextBlock FontSize="24" Margin="0 0 0 20">Select Year</TextBlock>
+                            <TextBlock FontSize="24" Margin="0 0 0 20">Select Make</TextBlock>
                         </ListViewHeaderItem>
                     </DataTemplate>
                 </ListView.HeaderTemplate>
@@ -103,7 +103,7 @@
                 <ListView.HeaderTemplate>
                     <DataTemplate>
                         <ListViewHeaderItem >
-                            <TextBlock FontSize="24" Margin="0 0 0 20">Select Year</TextBlock>
+                            <TextBlock FontSize="24" Margin="0 0 0 20">Select Model</TextBlock>
                         </ListViewHeaderItem>
                     </DataTemplate>
                 </ListView.HeaderTemplate>
@@ -190,6 +190,8 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel x:Name="stkpnlMain" Grid.Column="1">
+            <TextBlock x:Name="textblockTitle" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Create Profile" VerticalAlignment="Top" FontSize="53.333" Margin="0"/>
+            <TextBlock x:Name="textblockUser" HorizontalAlignment="Left" TextWrapping="Wrap" Text="User:" VerticalAlignment="Top" FontSize="32" Margin="0,50,0,0"/>
             <TextBlock x:Name="textFirstName" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Profile Name" VerticalAlignment="Top" FontSize="32" Margin="0,50,0,0"/>
             <TextBox x:Name="textboxProfileName" HorizontalAlignment="Left" Margin="0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Global User Interface" Width="350"/>
             <TextBlock Visibility="Collapsed"  x:Name="textblockProfileError" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Please enter a profile name" VerticalAlignment="Top" FontSize="16" Foreground="Red" Margin="0,5,0,0"  />

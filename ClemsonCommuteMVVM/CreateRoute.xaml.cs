@@ -1,5 +1,7 @@
-﻿using System;
+﻿using ClemsonCommuteMVVM.Model;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -94,5 +96,169 @@ namespace ClemsonCommuteMVVM
         {
             FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);  
         }
+
+        private void linkButtonDestination_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+
+
+            var list = getLocations();
+
+            destinationsList.ItemsSource = list;
+
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+
+
+        }
+
+
+        private void linkButtonArrivalTime_Click(object sender, RoutedEventArgs e)
+        {
+            var list = getArrivalTimes();
+
+            arrivalTimeList.ItemsSource = list;
+
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+        }
+
+
+        private void linkButtonParking_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+
+            var list = getParkingPass();
+
+            parkingList.ItemsSource = list;
+
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+        }
+
+
+
+
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+
+            var element = (RadioButton)sender;
+            var desLocation = element.DataContext as Location;
+
+            if (desLocation == null)
+            {
+                return;
+            }
+
+
+            //modelYear = mYear;
+
+            linkButtonDestination.Content = desLocation.LocationName;
+
+            destFlyout.Hide();
+
+
+
+        }
+
+        private void rbParking_Checked(object sender, RoutedEventArgs e)
+        {
+            var element = (RadioButton)sender;
+            var desParking = element.DataContext as CreatedListItem;
+
+            if (desParking == null)
+            {
+                return;
+            }
+
+            linkButtonParking.Content = desParking.DisplayName;
+
+            parkFlyout.Hide();
+        }
+
+        private void rbArrival_Checked(object sender, RoutedEventArgs e)
+        {
+            var element = (RadioButton)sender;
+            var desArrival = element.DataContext as CreatedListItem;
+
+            if (desArrival == null)
+            {
+                return;
+            }
+
+
+            linkButtonArrivalTime.Content = desArrival.DisplayName;
+
+            arriFlyout.Hide();
+
+
+        }
+
+
+
+
+        //Temporary helper method for destinations
+        private List<Location> getLocations()
+        {
+            var myLocations = new List<Location>();
+
+            myLocations.Add(new Location() { LocationName = "McAdams Hall"});
+
+            myLocations.Add(new Location() { LocationName = "Hendrix Center" });
+
+            return myLocations;
+
+        }
+
+
+
+
+        //helper method for parking passes
+        private List<CreatedListItem> getParkingPass()
+        {
+            var parkPasses = new List<CreatedListItem>();
+
+            parkPasses.Add(new CreatedListItem{DisplayName="Free", value="Free"});
+            parkPasses.Add(new CreatedListItem { DisplayName = "Metered", value = "Metered" });
+            parkPasses.Add(new CreatedListItem { DisplayName = "Pass", value = "Pass" });
+
+            return parkPasses;
+
+        }
+
+
+
+        //helper method for arrival times
+        private List<CreatedListItem> getArrivalTimes()
+        {
+
+
+            var parkPasses = new List<CreatedListItem>();
+
+
+            DateTime currentTime = DateTime.Now;
+
+
+
+
+
+                        
+            parkPasses.Add(new CreatedListItem { DisplayName = "It Doesn't Matter", value = "It Doesn't Matter" });
+
+            for (int i = 1; i < 10; i++ )
+            {
+
+                DateTime hourFromNow =  currentTime.AddHours(i);            
+                
+                string newTime = hourFromNow.ToString("h tt");                
+                
+                parkPasses.Add(new CreatedListItem { DisplayName = newTime, value = Convert.ToString(i) });
+
+            }
+
+            return parkPasses;
+
+        }
+
+ 
+
+
+
+
     }
 }

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Storage;
 
 namespace ClemsonCommutePRISM.Model
 {
@@ -15,5 +17,11 @@ namespace ClemsonCommutePRISM.Model
         public string Email { get; set; }
         public string Password { get; set; }
 
+
+
+
+
     }
+
+
 }
