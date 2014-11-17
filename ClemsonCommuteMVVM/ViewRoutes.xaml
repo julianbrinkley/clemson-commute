@@ -1,0 +1,105 @@
+﻿<Page
+    x:Class="ClemsonCommuteMVVM.ViewRoutes"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ClemsonCommuteMVVM"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <StackPanel x:Name="stkpnlMain" Grid.Column="1">
+            <TextBlock x:Name="textblockTitle" 
+                       HorizontalAlignment="Left" 
+                       TextWrapping="Wrap" 
+                       Text="View Routes" 
+                       VerticalAlignment="Top" 
+                       FontSize="53.333" 
+                       Margin="0 0 0 30"/>
+            
+            <ScrollViewer ZoomMode="Enabled">
+                
+               
+
+            <ListView x:Name="routesList" >
+            <ListView.HeaderTemplate>
+                    <DataTemplate>
+                        <ListViewHeaderItem >
+
+                        </ListViewHeaderItem>
+                    </DataTemplate>
+                </ListView.HeaderTemplate>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="0 0 0 15">
+                            <Grid.Background>
+                                <SolidColorBrush Color="White" Opacity=".3"/>
+                            </Grid.Background>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="130"/>
+                                <ColumnDefinition Width="15"/>
+                                <ColumnDefinition Width="90"/>
+                                <ColumnDefinition Width="15"/>
+                                <ColumnDefinition Width="199"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="0">
+
+                                <TextBlock 
+                                       FontSize="14"
+                                       Text="Est. Arrival Time"
+                                       Margin="10 10 0 0"/>
+                                <TextBlock x:Name="textblockArrivalTime"
+                                       FontSize="28"
+                                       Text="4:30 PM" 
+                                       Margin="10 0 0 0"/>
+                            </StackPanel>
+
+
+
+                            <!--RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/pin.png"))-->
+
+                            <Image Source="ms-appx:///Assets/gta.png" 
+                                   Grid.Column="2" 
+                                   Width="90" 
+                                   Height="90"
+                                   Margin="0 10 0 10"/>
+
+                            <StackPanel Grid.Column="4">
+
+                                <TextBlock x:Name="textblockOnTime"
+                                       FontSize="14"
+                                       Text="Route Name"
+                                       Margin="0 10 10 0"/>
+
+                                <TextBlock x:Name="textblockFull"
+                                       FontSize="14"
+                                       Text="{Binding ProviderName}"/>
+
+                                <TextBlock 
+                                       FontSize="14"
+                                       Text="Route Information"/>
+
+                                <TextBlock x:Name="textComments"
+                                       FontSize="14"
+                                       Text="{Binding RouteName}"    />
+
+                            </StackPanel>
+                            
+                            
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.FooterTemplate>
+                    <DataTemplate>
+
+                    </DataTemplate>
+                </ListView.FooterTemplate>
+            </ListView>
+
+            </ScrollViewer>
+        </StackPanel>
+    </Grid>
+</Page>

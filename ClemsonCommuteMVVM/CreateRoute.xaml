@@ -166,7 +166,7 @@
             <HyperlinkButton x:Name="linkButtonArrivalTime"  FontFamily="Global User Interface" FontSize="20" Foreground="White" Content="None Selected" FlyoutBase.AttachedFlyout="{StaticResource arrivalsFlyout}" Click="linkButtonArrivalTime_Click"/>
             <TextBlock x:Name="textParking" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Desired Parking" VerticalAlignment="Top" FontSize="24" Margin="0,20,0,0"/>
             <HyperlinkButton x:Name="linkButtonParking"   FontFamily="Global User Interface" FontSize="20" Foreground="White" Content="None Selected" FlyoutBase.AttachedFlyout="{StaticResource parkingFlyout}" Tapped="linkButtonParking_Tapped"/>
-            <Button x:Name="btnCreateAccount" Content="Continue" FontFamily="Global User Interface" Margin="0,20,0,0"/>
+            <Button x:Name="btnCreateRoute" Content="Continue" FontFamily="Global User Interface" Margin="0,20,0,0" Click="btnCreateRoute_Click"/>
         </StackPanel>
     </Grid>
 </Page>

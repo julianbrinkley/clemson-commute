@@ -197,9 +197,9 @@ namespace ClemsonCommuteMVVM
         {
             var myLocations = new List<Location>();
 
-            myLocations.Add(new Location() { LocationName = "McAdams Hall"});
+            myLocations.Add(new Location() { LocationName = "McAdams Hall", Latitude = 34.675848F, Longitude= -82.834577F}); //McAdams Hall
 
-            myLocations.Add(new Location() { LocationName = "Hendrix Center" });
+            myLocations.Add(new Location() { LocationName = "Hendrix Student Center", Latitude = 34.676390F, Longitude = -82.832145F});
 
             return myLocations;
 
@@ -252,6 +252,14 @@ namespace ClemsonCommuteMVVM
             }
 
             return parkPasses;
+
+        }
+
+        private void btnCreateRoute_Click(object sender, RoutedEventArgs e)
+        {
+
+            Frame.Navigate(typeof(ViewRoutes));
+
 
         }
 
