@@ -148,7 +148,7 @@ namespace ClemsonCommuteMVVM
 
             //modelYear = mYear;
 
-            linkButtonDestination.Content = desLocation.LocationName;
+            linkButtonDestination.Content = desLocation.Latitude;
 
             destFlyout.Hide();
 
@@ -197,9 +197,9 @@ namespace ClemsonCommuteMVVM
         {
             var myLocations = new List<Location>();
 
-            myLocations.Add(new Location() { LocationName = "McAdams Hall", Latitude = 34.675848F, Longitude= -82.834577F}); //McAdams Hall
+            myLocations.Add(new Location() { Latitude = 34.675848F, Longitude= -82.834577F}); //McAdams Hall
 
-            myLocations.Add(new Location() { LocationName = "Hendrix Student Center", Latitude = 34.676390F, Longitude = -82.832145F});
+            myLocations.Add(new Location() { Latitude = 34.676390F, Longitude = -82.832145F}); //Hendrix
 
             return myLocations;
 

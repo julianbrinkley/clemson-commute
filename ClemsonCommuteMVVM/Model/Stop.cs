@@ -10,8 +10,7 @@ namespace ClemsonCommuteMVVM.Model
 
     public class Stop
     {
-        public float Latitude { get; set; }
-        public float Longitude { get; set; }
+        public Location Location { get; set; }
         public DateTime DepartureTime { get; set; }
 
     }

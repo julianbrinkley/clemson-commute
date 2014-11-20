@@ -30,7 +30,7 @@
                             <RadioButton GroupName="destinationGroup" 
                                          Grid.Column="0" 
                                          Margin="10 0 0 0" 
-                                         Content="{Binding LocationName}"
+                                         Content="{Binding Latitude}"
                                          FontSize="20" Checked="RadioButton_Checked" >
 
                             </RadioButton>
