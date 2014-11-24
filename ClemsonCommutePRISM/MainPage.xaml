@@ -19,7 +19,8 @@
             
                 	<Button x:Name="writeButton" Content="Write" FontFamily="Global User Interface" Click="writeButton_Click"/>
                 	<Button x:Name="readButton" Content="Read" FontFamily="Global User Interface" Click="readButton_Click"/>
-                	<TextBlock x:Name="resultTextBlock" TextWrapping="Wrap" Text="TextBlock" FontSize="32" Height="400"/>
+            <Button x:Name="calcDistance" Content="Calculate Distance" FontFamily="Global User Interface" Click="calcDistance_Click" />
+            <TextBlock x:Name="resultTextBlock" TextWrapping="Wrap" Text="TextBlock" FontSize="32" Height="400"/>
     
             
             

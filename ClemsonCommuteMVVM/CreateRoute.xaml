@@ -157,7 +157,7 @@
         
         <StackPanel x:Name="stkpnlMain" Grid.Column="1">
             <TextBlock x:Name="textblockTitle" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Create Route" VerticalAlignment="Top" FontSize="53.333" Margin="0"/>
-            <map:MapControl x:Name="map1" Loaded="map1_Loaded" Width="350" Height="350" />
+            <!--<map:MapControl x:Name="map1" Loaded="map1_Loaded" Width="350" Height="350" />-->
             <TextBlock x:Name="textblockProfile" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Profile" VerticalAlignment="Top" FontSize="24" Margin="0,20,0,0"/>
             <HyperlinkButton x:Name="linkButtonProfile"  FontFamily="Global User Interface" FontSize="20" Foreground="White" Content="Select Profile"/>
            <TextBlock x:Name="textDestination" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Destination" VerticalAlignment="Top" FontSize="24" Margin="0,20,0,0"/>

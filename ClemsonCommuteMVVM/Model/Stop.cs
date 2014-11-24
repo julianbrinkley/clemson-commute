@@ -12,6 +12,6 @@ namespace ClemsonCommuteMVVM.Model
     {
         public Location Location { get; set; }
         public DateTime DepartureTime { get; set; }
-
+        public int StopID { get; set; }
     }
 }

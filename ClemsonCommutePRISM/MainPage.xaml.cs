@@ -176,5 +176,14 @@ namespace ClemsonCommutePRISM
             return myUsers;
 
         }
+
+        private void calcDistance_Click(object sender, RoutedEventArgs e)
+        {
+
+            
+
+
+
+        }
     }
 }
