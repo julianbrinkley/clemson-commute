@@ -5,5 +5,12 @@
     xmlns:local="using:ClemsonCommuteMVVM">
 
 
+    <Application.Resources>
+        <SolidColorBrush x:Key="ListItemBrush" Color="#FF6495ED"/>
+        
+        
+
+    </Application.Resources>
+    
 
 </Application>

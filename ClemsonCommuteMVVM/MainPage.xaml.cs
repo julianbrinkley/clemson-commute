@@ -31,7 +31,7 @@ namespace ClemsonCommuteMVVM
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
 
-            goToRegistration();
+            goToHomePage();
         }
 
 
@@ -56,6 +56,16 @@ namespace ClemsonCommuteMVVM
             await saveRoutes();
 
             Frame.Navigate(typeof(RegistrationPage));
+        }
+
+        public async void goToHomePage()
+        {
+
+            await Task.Delay(TimeSpan.FromSeconds(4));
+
+            await saveRoutes();
+
+            Frame.Navigate(typeof(HomePage));
         }
 
         //Json FileName

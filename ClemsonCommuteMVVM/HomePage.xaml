@@ -1,0 +1,174 @@
+﻿<Page
+    x:Class="ClemsonCommuteMVVM.HomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ClemsonCommuteMVVM"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    NavigationCacheMode="Disabled">
+    
+    <Page.Resources>
+
+        <Style  x:Key="myLBStyle" TargetType="ListBoxItem">
+
+        </Style>
+
+    </Page.Resources>
+    <Page.BottomAppBar>
+        <CommandBar x:Name="barCommandBar" ClosedDisplayMode="Minimal">
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Name="btnSignIn" Label="sign in / sign up" Click="btnSignIn_Click" />
+                <AppBarButton x:Name="btnSettings" Label="settings" Click="btnSettings_Click" />
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Grid>
+
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!--This rectange is a place holder for the logo-->
+        <Rectangle 
+            Height="100" 
+            Fill="Orange" 
+            Grid.Row="0" 
+            Grid.Column="0" 
+            Grid.ColumnSpan="3"/>
+        
+        <TextBox x:Name="textboxSearch" Grid.Row="1"
+                 Margin="20 20 20 0"
+                 Height="50" 
+                 Text="search locations" 
+                 FontSize="29.333" 
+                 Opacity="0.4" 
+                 BorderBrush="{x:Null}" 
+                 SelectionHighlightColor="White" TextChanged="textboxSearch_TextChanged" />
+
+        <Border Grid.Row="2" 
+                Padding="4" 
+                BorderThickness="0 0 0 2" 
+                Margin="20 0 20 0"
+                BorderBrush="#FF6495ED" 
+                HorizontalAlignment="Stretch" 
+                VerticalAlignment="Stretch" />
+
+        <ListBox x:Name="menuListBox" Grid.Row="3" 
+                 Background="{x:Null}" 
+                 ItemContainerStyle="{StaticResource myLBStyle}"  >
+
+            <ListBoxItem x:Name="itemGo">
+                <StackPanel Orientation="Horizontal" 
+                            VerticalAlignment="Center">
+                    <Image 
+                            Source="Assets/go.png" 
+                            Width="80" 
+                            Height="80"
+                            Margin="15 0 0 0"/>
+
+                    <TextBlock 
+                           FontSize="48"
+                           FontWeight="Light"
+                           Margin="20 0 0 0"
+                           Foreground="{StaticResource ListItemBrush}">
+                           go
+                    </TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            
+            <ListBoxItem x:Name="itemViewRoutes">
+                <StackPanel Orientation="Horizontal" 
+                            VerticalAlignment="Center">
+                    <Image 
+                            Source="Assets/routes3.png" 
+                            Width="80" 
+                            Height="80"
+                            Margin="15 0 0 0"/>
+
+                    <TextBlock 
+                           FontSize="48"
+                           FontWeight="Light"
+                           Margin="20 0 0 0"
+                           Foreground="{StaticResource ListItemBrush}">
+                           all routes
+                    </TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+
+            <ListBoxItem x:Name="itemRecentRoutes">
+                <StackPanel Orientation="Horizontal" 
+                            VerticalAlignment="Center">
+                    <Image 
+                            Source="Assets/recent2.png" 
+                            Width="80" 
+                            Height="80"
+                            Margin="15 0 0 0"/>
+
+                    <TextBlock 
+                           FontSize="48"
+                           FontWeight="Light"
+                           Margin="20 0 0 0"
+                           Foreground="{StaticResource ListItemBrush}">
+                           recent routes
+                    </TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+
+        </ListBox>
+
+
+        <!--<ListView x:Name="destinationsList" Grid.Row="1">
+            <ListView.HeaderTemplate>
+                <DataTemplate>
+                    <ListViewHeaderItem >
+                        <TextBlock FontSize="24" Margin="0 0 0 20">Select Destination</TextBlock>
+                    </ListViewHeaderItem>
+                </DataTemplate>
+            </ListView.HeaderTemplate>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="15"/>
+                            <ColumnDefinition Width="*"/>
+                            
+                        </Grid.ColumnDefinitions>
+
+                       <Image 
+                            Source="Assets/routes2.png" 
+                            Width="128" 
+                            Height="128" 
+                            Grid.Row="0" 
+                            Grid.Column="0" />
+
+                        <TextBlock Grid.Column="2"
+                           Grid.Row="0"
+                           FontSize="48"
+                           FontWeight="Light">
+                           view routes</TextBlock>
+
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>-->
+
+
+
+
+    </Grid>
+</Page>

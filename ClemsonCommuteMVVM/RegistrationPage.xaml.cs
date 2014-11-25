@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Runtime.Serialization.Json;
+using System.Text;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -33,6 +34,7 @@ namespace ClemsonCommuteMVVM
         string emailAddress;
         string userPassword;
 
+
         public RegistrationPage()
         {
 
@@ -50,6 +52,9 @@ namespace ClemsonCommuteMVVM
 
         private async void btnCreateAccount_Click(object sender, RoutedEventArgs e)
         {
+            //Create string builder to display errors.
+            StringBuilder sb = new StringBuilder("Required field(s) missing: ");
+
             if (!string.IsNullOrWhiteSpace(textboxFirstName.Text))
             {
                 firstName = textboxFirstName.Text;
