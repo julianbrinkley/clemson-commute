@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -24,7 +25,6 @@ namespace ClemsonCommuteMVVM
     public sealed partial class HomePage : Page
     {
 
-        Object loggedInValue;
 
         public HomePage()
         {
@@ -38,17 +38,24 @@ namespace ClemsonCommuteMVVM
         /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            
 
+           var localSettings =  Windows.Storage.ApplicationData.Current.LocalSettings;
 
-            loggedInValue =  Windows.Storage.ApplicationData.Current.LocalSettings;
+           //localSettings.Values["loggedIn"] = "False";
 
-            if (String.Compare(loggedInValue.ToString(), "False") == 0)
+           Object value = localSettings.Values["loggedIn"];
+
+            if (value.ToString() == "False")
             {
-                barCommandBar.SecondaryCommands.RemoveAt(0);
+                //barCommandBar.SecondaryCommands.RemoveAt(0);
+                AppBarButton btnSignIn = new AppBarButton();
+                btnSignIn.Label = "sign in / sign out";
+                btnSignIn.Click += btnSignIn_Click;
+                barCommandBar.SecondaryCommands.Insert(0, btnSignIn);
             }
             else
             {
-
 
                 //add a button that shows the user
                 AppBarButton btnLoggedInAs = new AppBarButton();
@@ -87,11 +94,6 @@ namespace ClemsonCommuteMVVM
 
            localSettings.Values["loggedIn"] = "False";
 
-           loggedInValue = localSettings.Values["loggedIn"];
-
-           //localSettings.Values.Remove("loggedIn");
-
-           btnSignIn.Label = "sign in / sign up";
 
            Frame.Navigate(typeof(HomePage));
         }

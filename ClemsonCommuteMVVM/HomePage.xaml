@@ -19,7 +19,7 @@
     <Page.BottomAppBar>
         <CommandBar x:Name="barCommandBar" ClosedDisplayMode="Minimal">
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:Name="btnSignIn" Label="sign in / sign up" Click="btnSignIn_Click" />
+                <!--<AppBarButton x:Name="btnSignIn" Label="sign in / sign up" Click="btnSignIn_Click" />-->
                 <AppBarButton x:Name="btnSettings" Label="settings" Click="btnSettings_Click" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
