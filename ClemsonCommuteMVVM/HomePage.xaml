@@ -20,7 +20,7 @@
         <CommandBar x:Name="barCommandBar" ClosedDisplayMode="Minimal">
             <CommandBar.SecondaryCommands>
                 <!--<AppBarButton x:Name="btnSignIn" Label="sign in / sign up" Click="btnSignIn_Click" />-->
-                <AppBarButton x:Name="btnSettings" Label="settings" Click="btnSettings_Click" />
+               <!-- <AppBarButton x:Name="btnSettings" Label="settings" Click="btnSettings_Click" />-->
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
@@ -65,7 +65,7 @@
                  Background="{x:Null}" 
                  ItemContainerStyle="{StaticResource myLBStyle}"  >
 
-            <ListBoxItem x:Name="itemGo">
+            <ListBoxItem x:Name="itemGo" Tapped="itemGo_Tapped">
                 <StackPanel Orientation="Horizontal" 
                             VerticalAlignment="Center">
                     <Image 

@@ -35,6 +35,8 @@ namespace ClemsonCommuteMVVM
 
          Model.Model vehicleModel = new Model.Model();
 
+        private static List<Profile> myProfiles = new List<Profile>(); 
+
          //Json FileName
          private const string JSONFILENAME = "user_data.json";
 
@@ -85,28 +87,6 @@ namespace ClemsonCommuteMVVM
             textblockUser.Text = string.Format("User: {0} {1}", user.FirstName, user.LastName);
         }
 
-        private void btnCreateAccount_Click(object sender, RoutedEventArgs e)
-        {
-
-            //MessageDialog msgbox = new MessageDialog("Profile Created.");
-            //await msgbox.ShowAsync();  
-
-            if(!string.IsNullOrWhiteSpace(textboxProfileName.Text))
-            {
-                App.ProfileName = textboxProfileName.Text;
-            }
-            else
-            {
-                textblockProfileError.Visibility = Visibility.Visible;
-            }
-
-
-            App.SelectedModel = vehicleModel;
-
-            //Go to Create Route Page
-            Frame.Navigate(typeof(CreateRoute));
-
-        }
 
 
         private async void linkbuttonVehicle_Tapped(object sender, TappedRoutedEventArgs e)
@@ -256,6 +236,112 @@ namespace ClemsonCommuteMVVM
 
         }
 
+        private async void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            //MessageDialog msgbox = new MessageDialog("Profile Created.");
+            //await msgbox.ShowAsync();  
+
+            if (!string.IsNullOrWhiteSpace(textboxProfileName.Text))
+            {
+                App.ProfileName = textboxProfileName.Text;
+            }
+            else
+            {
+                textblockProfileError.Visibility = Visibility.Visible;
+            }
+
+
+            App.SelectedModel = vehicleModel;
+
+            var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+
+            Object userID = localSettings.Values["UserID"];
+
+            //Create profile
+
+            Profile p = new Profile()
+            {
+                ProfileID = myProfiles.Count() + 1,
+                ProfileName = textboxProfileName.Text,
+                VehicleMake =  linkButtonMake.Content.ToString(),
+                VehModel = linkButtonModel.Content.ToString(),
+                VehicleYear =  Convert.ToInt32(linkButtonYear.Content.ToString()),
+                UserId =     Convert.ToInt32(userID)      
+            };
+
+            try
+            {
+                await saveProfile(p);
+            }
+            catch(Exception x)
+            {
+
+            }
+
+
+            //Go to Create Route Page
+            Frame.Navigate(typeof(CreateRoute));
+
+        }
+
+        private async Task saveProfile(Profile p)
+        {
+
+
+            string content = String.Empty;
+
+            var jsonSerializer = new DataContractJsonSerializer(typeof(List<Profile>));
+
+
+
+           var myStream = await ApplicationData.Current.LocalFolder.OpenStreamForReadAsync("profiles.json");
+
+
+            List<Profile> originalList = (List<Profile>)jsonSerializer.ReadObject(myStream);
+
+
+            //aaa
+
+            var profiles = new List<Profile>();
+
+            profiles.Add(p);
+
+            profiles.AddRange(originalList);
+
+            var serializer = new DataContractJsonSerializer(typeof(List<Profile>));
+            using (var stream = await ApplicationData.Current.LocalFolder.OpenStreamForWriteAsync(
+                "profiles.json", CreationCollisionOption.ReplaceExisting))
+            {
+                serializer.WriteObject(stream, profiles);
+            }
+
+        }
+
+        //deserialize Json
+        private async Task deserializeProfiles()
+        {
+
+            string content = String.Empty;
+
+            var jsonSerializer = new DataContractJsonSerializer(typeof(List<Profile>));
+
+
+            try
+            {
+                var myStream = await ApplicationData.Current.LocalFolder.OpenStreamForReadAsync("profiles.json");
+
+
+                myProfiles = (List<Profile>)jsonSerializer.ReadObject(myStream);
+
+
+            }
+            catch (Exception x)
+            {
+
+            }
+
+
+        }
 
 
 

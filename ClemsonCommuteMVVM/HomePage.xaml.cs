@@ -36,7 +36,7 @@ namespace ClemsonCommuteMVVM
         /// </summary>
         /// <param name="e">Event data that describes how this page was reached.
         /// This parameter is typically used to configure the page.</param>
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             
 
@@ -46,28 +46,50 @@ namespace ClemsonCommuteMVVM
 
            Object value = localSettings.Values["loggedIn"];
 
+           Object userValue = localSettings.Values["User"];
+
+            //if not logged in
             if (value.ToString() == "False")
             {
                 //barCommandBar.SecondaryCommands.RemoveAt(0);
                 AppBarButton btnSignIn = new AppBarButton();
-                btnSignIn.Label = "sign in / sign out";
+                btnSignIn.Label = "sign in / sign up";
                 btnSignIn.Click += btnSignIn_Click;
                 barCommandBar.SecondaryCommands.Insert(0, btnSignIn);
+
+                menuListBox.Items.Remove(itemGo);
+                menuListBox.Items.Remove(itemRecentRoutes);
+
+                var messageDialog = new Windows.UI.Popups.MessageDialog("Please sign in to unlock full functionality.");
+                await messageDialog.ShowAsync();
+
+                //itemGo.IsEnabled = false;
+                //itemRecentRoutes.IsEnabled = false;
+                
             }
             else
             {
 
-                //add a button that shows the user
-                AppBarButton btnLoggedInAs = new AppBarButton();
-                btnLoggedInAs.Label = "signed in as julianlbrinkley@gmail.com";
-                btnLoggedInAs.Click += btnLogOut_Click;
-                
-                AppBarButton btnLogout = new AppBarButton();
-                btnLogout.Label = "logout";
-                btnLogout.Click += btnLogOut_Click;
 
-                barCommandBar.SecondaryCommands.Insert(0, btnLoggedInAs);
-                barCommandBar.SecondaryCommands.Insert(1, btnLogout);
+                    //add a button that shows the user
+                    AppBarButton btnLoggedInAs = new AppBarButton();
+                    btnLoggedInAs.Label = String.Format("signed in as {0}", userValue.ToString());
+                    btnLoggedInAs.Click += btnLogOut_Click;
+
+                    AppBarButton btnLogout = new AppBarButton();
+                    btnLogout.Label = "logout";
+                    btnLogout.Click += btnLogOut_Click;
+
+
+                    AppBarButton btnSettings = new AppBarButton();
+                    btnSettings.Label = "settings";
+                    btnSettings.Click += btnSettings_Click;
+
+                    barCommandBar.SecondaryCommands.Insert(0, btnLoggedInAs);
+                    barCommandBar.SecondaryCommands.Insert(1, btnLogout);
+                    barCommandBar.SecondaryCommands.Insert(2, btnSettings);
+
+
             }
 
 
@@ -93,6 +115,8 @@ namespace ClemsonCommuteMVVM
            var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
 
            localSettings.Values["loggedIn"] = "False";
+           localSettings.Values.Remove("User");
+
 
 
            Frame.Navigate(typeof(HomePage));
@@ -104,6 +128,11 @@ namespace ClemsonCommuteMVVM
             //loggedInValue = localSettings.Values["loggedIn"];
 
             Frame.Navigate(typeof(SignInPage));
+        }
+
+        private void itemGo_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(CreateRoute));
         }
 
 

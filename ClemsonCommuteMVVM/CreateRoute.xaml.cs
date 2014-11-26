@@ -1,14 +1,18 @@
 ﻿using ClemsonCommuteMVVM.Model;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Runtime.Serialization.Json;
+using System.Threading.Tasks;
 using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Services.Maps;
+using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.UI;
 using Windows.UI.Popups;
@@ -31,6 +35,8 @@ namespace ClemsonCommuteMVVM
     /// </summary>
     public sealed partial class CreateRoute : Page
     {
+        private static List<Profile> myProfiles = new List<Profile>();
+
         public CreateRoute()
         {
             this.InitializeComponent();
@@ -62,38 +68,14 @@ namespace ClemsonCommuteMVVM
         }
 
 
-        private void map1_Loaded(object sender, RoutedEventArgs e)
+ 
+
+
+
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //ZoomToMalmoe();
+            await deserializeProfiles();
 
-        }
-         
-        //private async void ZoomToMalmoe()
-        //{
-        //    //var malmoe = new Geopoint(new BasicGeoposition() { Latitude = 55.5868550870444, Longitude = 13.0115601917735 });
-        //    //await map1.TrySetViewAsync(malmoe, 11.4086892086054, 0, 0, MapAnimationKind.Bow);
-
-        //    var gl = new Geolocator() { DesiredAccuracy = PositionAccuracy.High };
-        //    var location = await gl.GetGeopositionAsync(TimeSpan.FromMinutes(5), TimeSpan.FromSeconds(5));
-
-            
-
-        //    var pin = new MapIcon()
-        //    {
-        //        Location = location.Coordinate.Point,
-        //        Title = "You are here!",
-        //        Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/pin.png")),
-        //        NormalizedAnchorPoint = new Point() { X = 0.32, Y = 0.78 },
-        //    };
-        //    map1.MapElements.Add(pin);
-        //    await map1.TrySetViewAsync(location.Coordinate.Point, 16, 0, 0, MapAnimationKind.Bow);
-        //}
-
-
-
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
         }
 
         private void comboboxDestination_Tapped(object sender, TappedRoutedEventArgs e)
@@ -267,7 +249,75 @@ namespace ClemsonCommuteMVVM
 
         }
 
- 
+        private async void linkButtonProfile_Click(object sender, RoutedEventArgs e)
+        {
+            var localSettings =  Windows.Storage.ApplicationData.Current.LocalSettings;
+
+           Object userID = localSettings.Values["UserID"];
+
+            await deserializeProfiles();
+
+            if(myProfiles.Count() == 0)
+            {
+                //HyperlinkButton btnCreateProfile = new HyperlinkButton();
+                //btnCreateProfile.Content = "create profile";
+                //ListViewItem item = new ListViewItem();
+                //item.
+                //profilesList.Items.Add(btnCreateProfile);
+                
+            }
+            else
+            {
+                //profilesList.ItemsSource =  (from p in myProfiles
+                //                             where p.UserId == Convert.ToInt32(userID)
+                //                             select p).ToList();
+
+                profilesList.ItemsSource = myProfiles;
+            }
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+        }
+
+
+        //deserialize Json
+        private async Task deserializeProfiles()
+        {
+
+            string content = String.Empty;
+
+            var jsonSerializer = new DataContractJsonSerializer(typeof(List<Profile>));
+
+
+            try
+            { 
+                var myStream = await ApplicationData.Current.LocalFolder.OpenStreamForReadAsync("profiles.json");
+
+
+                   myProfiles = (List<Profile>)jsonSerializer.ReadObject(myStream);
+                
+
+            }
+            catch(Exception x)
+            {
+
+            }
+
+
+
+
+        }
+
+        private void hyperlinkCreateProfile_Click(object sender, RoutedEventArgs e)
+        {
+            //string pageName = "profile";
+            Frame.Navigate(typeof(ViewProfilePage));
+        }
+
+        private void btnSettings_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(ViewProfilePage));
+        }
+
+
 
 
 

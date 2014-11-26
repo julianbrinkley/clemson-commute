@@ -1,12 +1,16 @@
 ﻿using ClemsonCommuteMVVM.Model;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Runtime.Serialization.Json;
 using System.Text;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -50,6 +54,7 @@ namespace ClemsonCommuteMVVM
 
         private async void btnSign_Click(object sender, RoutedEventArgs e)
         {
+            var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
 
             switch (pivotAccounts.SelectedIndex)
             {
@@ -106,30 +111,115 @@ namespace ClemsonCommuteMVVM
                     }
 
 
-                    //User u = new User
-                    //{
 
-                    //    Email = emailAddress,
-                    //    FirstName = firstName,
-                    //    LastName = lastName,
-                    //    Password = userPassword,
-                    //    UserId = 1
 
-                    //};
-                    var messageDialog = new Windows.UI.Popups.MessageDialog(sb.ToString());
-                    await messageDialog.ShowAsync();
+                    if(sb.Length < 28)
+                    {
+                        User u = new User
+                        {
+
+                            Email = emailAddress,
+                            FirstName = firstName,
+                            LastName = lastName,
+                            Password = userPassword,
+                            UserId = 1
+
+                        };
+
+                        await saveUser(u);
+
+                        localSettings.Values["loggedIn"] = "True";
+
+                        localSettings.Values["User"] = App.CurrentUser.Email.ToString();
+
+                        localSettings.Values["UserID"] = App.CurrentUser.UserId;
+
+                        Frame.Navigate(typeof(HomePage));
+                    }
+                    else
+                    {
+
+
+                        var messageDialog = new Windows.UI.Popups.MessageDialog(sb.ToString());
+                        await messageDialog.ShowAsync();
+
+                    }
+
+
 
                     break;
 
                 case 1:
-                    //var messageDialog2 = new Windows.UI.Popups.MessageDialog("Sign In?");
-                    //await messageDialog2.ShowAsync();
 
-                    var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-                    localSettings.Values["loggedIn"] = "True";
-                    Frame.Navigate(typeof(HomePage));
+                    await deserializeJsonAsync();
+
+                    if(App.CurrentUser != null)//if user exists
+                    {
+
+                        
+                        localSettings.Values["loggedIn"] = "True";
+                        localSettings.Values["User"] = App.CurrentUser.Email.ToString();
+                        localSettings.Values["UserID"] = App.CurrentUser.UserId;
+                        Frame.Navigate(typeof(HomePage));
+                    }
+                    else //show message box
+                    {
+                       var loginError = new Windows.UI.Popups.MessageDialog("Username / password not found. Pleae try again.");
+                        await loginError.ShowAsync();
+                    }
+
                     break;
             }
+        }
+
+        //deserialize Json
+        private async Task deserializeJsonAsync()
+        {
+
+            string content = String.Empty;
+
+            List<User> myUsers;
+
+            var jsonSerializer = new DataContractJsonSerializer(typeof(List<User>));
+
+            var myStream = await ApplicationData.Current.LocalFolder.OpenStreamForReadAsync("user_data.json");
+
+            myUsers = (List<User>)jsonSerializer.ReadObject(myStream);
+
+
+            try
+            {
+                User user = (from u in myUsers
+                             where u.Email == textboxUsername.Text &
+                             u.Password == textboxEnterPassword.Text
+                             select u).FirstOrDefault();
+
+                App.CurrentUser = user;
+
+            }
+            catch(Exception x)
+            {
+                Debug.WriteLine("Username, password not found");
+            }
+
+
+        }
+
+        //Save User
+        private async Task saveUser(User u)
+        {
+
+            var myUsers = new List<User>();
+
+            myUsers.Add(u);
+
+            var serializer = new DataContractJsonSerializer(typeof(List<User>));
+            using (var stream = await ApplicationData.Current.LocalFolder.OpenStreamForWriteAsync(
+                "user_data.json", CreationCollisionOption.ReplaceExisting))
+            {
+                serializer.WriteObject(stream, myUsers);
+            }
+
         }
 
         private void linkbuttonPassword_Click(object sender, RoutedEventArgs e)

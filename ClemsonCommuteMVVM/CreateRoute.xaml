@@ -9,6 +9,14 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Page.BottomAppBar>
+        <CommandBar x:Name="barCommandBar" ClosedDisplayMode="Minimal">
+            <CommandBar.SecondaryCommands>
+                <!--<AppBarButton x:Name="btnSignIn" Label="sign in / sign up" Click="btnSignIn_Click" />-->
+                 <AppBarButton x:Name="btnSettings" Label="settings" Click="btnSettings_Click"/>
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
     <!-- Declare the shared flyout as a resource. -->
     <Page.Resources>
         <!--Destination Flyout-->
@@ -98,6 +106,57 @@
             </Flyout.FlyoutPresenterStyle>
         </Flyout>
 
+        <!--Arrival Flyout-->
+        <Flyout x:Name="profFlyout" x:Key="profilesFlyout" Placement="Full">
+
+            <ListView x:Name="profilesList">
+
+                <ListView.HeaderTemplate>
+                    <DataTemplate>
+                        <ListViewHeaderItem >
+                            <TextBlock FontSize="24" Margin="0 0 0 20">Select Profile</TextBlock>
+                        </ListViewHeaderItem>
+                    </DataTemplate>
+                </ListView.HeaderTemplate>
+               
+                
+                <ListView.ItemTemplate>
+                    
+                    <DataTemplate>
+                        <StackPanel>
+
+                             <!--Change this...if empty-->
+                            <RadioButton x:Name="rbArrival"
+                                         GroupName="profilesGroup" 
+                                         Grid.Column="0" 
+                                         Margin="10 0 0 0" 
+                                         Content="{Binding ProfileName}"
+                                         FontSize="20" >
+
+                            </RadioButton>
+                            
+
+
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.FooterTemplate>
+                    <DataTemplate>
+                        <HyperlinkButton x:Name="hyperlinkCreateProfile" 
+                                             Content="create a profile" 
+                                         Click="hyperlinkCreateProfile_Click"  />
+                    </DataTemplate>
+                </ListView.FooterTemplate>
+
+            </ListView>
+
+
+            <Flyout.FlyoutPresenterStyle>
+                <Style TargetType="FlyoutPresenter">
+                    <Setter Property="ScrollViewer.ZoomMode" Value="Enabled"/>
+                </Style>
+            </Flyout.FlyoutPresenterStyle>
+        </Flyout>
 
         <!--Parking Flyout-->
         <Flyout x:Name="parkFlyout" x:Key="parkingFlyout" Placement="Full">
@@ -148,18 +207,30 @@
 
     <Grid>
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        
-        <StackPanel x:Name="stkpnlMain" Grid.Column="1">
+        <!--This rectange is a place holder for the logo-->
+        <Rectangle 
+            Height="100" 
+            Fill="Orange"
+            Grid.Row="0" 
+            Grid.Column="0" 
+            Grid.ColumnSpan="4"/>
+
+        <StackPanel x:Name="stkpnlMain" Grid.Column="1" Grid.Row="1" Margin="0 20 0 0">
             <TextBlock x:Name="textblockTitle" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Create Route" VerticalAlignment="Top" FontSize="53.333" Margin="0"/>
             <!--<map:MapControl x:Name="map1" Loaded="map1_Loaded" Width="350" Height="350" />-->
             <TextBlock x:Name="textblockProfile" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Profile" VerticalAlignment="Top" FontSize="24" Margin="0,20,0,0"/>
-            <HyperlinkButton x:Name="linkButtonProfile"  FontFamily="Global User Interface" FontSize="20" Foreground="White" Content="Select Profile"/>
+            <HyperlinkButton x:Name="linkButtonProfile"  FontFamily="Global User Interface" FontSize="20" Foreground="White" Content="Select Profile" FlyoutBase.AttachedFlyout="{StaticResource profilesFlyout}" Click="linkButtonProfile_Click" />
            <TextBlock x:Name="textDestination" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Destination" VerticalAlignment="Top" FontSize="24" Margin="0,20,0,0"/>
             <HyperlinkButton x:Name="linkButtonDestination" FontFamily="Global User Interface" FontSize="20" Foreground="White" Content="Select Destination" FlyoutBase.AttachedFlyout="{StaticResource destinationFlyout}" Tapped="linkButtonDestination_Tapped"/>
             <TextBlock x:Name="textArrivalTime" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Desired Arrival Time" VerticalAlignment="Top" FontSize="24" Margin="0,20,0,0"/>

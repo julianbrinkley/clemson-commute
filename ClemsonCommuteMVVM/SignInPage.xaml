@@ -35,7 +35,8 @@
                                  VerticalAlignment="Top" 
                                  FontFamily="Global User Interface" 
                                  Width="440"
-                                 Height="50"/>
+                                 Height="50"
+                                 Text="Julian"/>
                        
                          <!--Lastname-->
                         <TextBox x:Name="textboxLastName" 
@@ -45,7 +46,8 @@
                                  VerticalAlignment="Top" 
                                  FontFamily="Global User Interface" 
                                  Width="440"
-                                 Height="50"/>
+                                 Height="50"
+                                 Text="Brinkley"/>
                         
                         <!--Email Address-->
                         <TextBox x:Name="textboxEmailAddress" 
@@ -55,7 +57,8 @@
                                  VerticalAlignment="Top" 
                                  FontFamily="Global User Interface" 
                                  Width="440"
-                                 Height="50"/>
+                                 Height="50"
+                                 Text="julianlbrinkley@gmail.com"/>
 
                         <!--PAssword-->
                         <TextBox x:Name="textboxPassword" 
@@ -65,7 +68,8 @@
                                  VerticalAlignment="Top" 
                                  FontFamily="Global User Interface" 
                                  Width="440"
-                                 Height="50"/>
+                                 Height="50"
+                                 Text="P@ssw0rd"/>
                         
                         <TextBlock FontSize="24"
                                    FontWeight="Light" 
@@ -90,7 +94,8 @@
                                  VerticalAlignment="Top" 
                                  FontFamily="Global User Interface" 
                                  Width="440"
-                                 Height="50"/>
+                                 Height="50"
+                                 Text="julianlbrinkley@gmail.com"/>
 
                         <!--Lastname-->
                         <TextBox x:Name="textboxEnterPassword" 
@@ -100,7 +105,8 @@
                                  VerticalAlignment="Top" 
                                  FontFamily="Global User Interface" 
                                  Width="440"
-                                 Height="50"/>
+                                 Height="50"
+                                 Text="P@ssw0rd"/>
                         
                         <HyperlinkButton x:Name="linkbuttonPassword" Foreground="{StaticResource ListItemBrush}" Click="linkbuttonPassword_Click">
                             forgot password?

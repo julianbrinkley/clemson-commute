@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
     <Page.Resources>
         <!--Years Flyout-->
         <Flyout x:Name="vehYearFlyout" x:Key="VehicleYearsFlyout" Placement="Full">
@@ -51,6 +52,8 @@
                 </Style>
             </Flyout.FlyoutPresenterStyle>
         </Flyout>
+        
+        
 
         <!--Make Flyout-->
         <Flyout x:Name="vehMakeFlyout" x:Key="VehicleMakesFlyout" Placement="Full">
@@ -179,6 +182,11 @@
         </Flyout>
 
     </Page.Resources>
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton x:Name="btnSave" Icon="Accept" Label="Save" Click="btnSave_Click"/>
+        </CommandBar>
+    </Page.BottomAppBar>
 
 
     <Grid>
@@ -203,7 +211,6 @@
             <HyperlinkButton IsEnabled="False" x:Name="linkButtonModel" FlyoutBase.AttachedFlyout="{StaticResource VehicleModelsFlyout}"  FontFamily="Global User Interface" FontSize="20" Foreground="White" Content="Select Model" Tapped="linkButtonModel_Tapped"/>
             <TextBlock x:Name="textParkingPass" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Parking Pass Type" VerticalAlignment="Top" FontSize="32" Margin="0,20,0,0"/>
             <HyperlinkButton x:Name="linkButtonParking" FlyoutBase.AttachedFlyout="{StaticResource parkingPassFlyout}" Tapped="linkbuttonVehicle_Tapped" FontFamily="Global User Interface" FontSize="20" Foreground="White" Content="None Selected"/>
-            <Button x:Name="btnCreateAccount" Content="Continue" FontFamily="Global User Interface" Margin="0,20,0,0" Click="btnCreateAccount_Click"/>
         </StackPanel>
     </Grid>
 </Page>

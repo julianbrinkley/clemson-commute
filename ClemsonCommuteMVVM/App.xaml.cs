@@ -31,6 +31,8 @@ namespace ClemsonCommuteMVVM
 
         private TransitionCollection transitions;
 
+        public static Model.User CurrentUser { get; set; }
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
